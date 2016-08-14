@@ -20,7 +20,7 @@ s.send("JOIN {}\r\n".format(CHANNEL).encode("utf-8"))
 #Setting up start time for use in time-slot analytics
 start_time = time()
 
-with open('sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as output:
+with open('data/sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as output:
     output.write('username,message,sentiment,confidence\n')
     while True:
         #Getting response (and response time)
@@ -40,15 +40,15 @@ with open('sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as outpu
             #Analyze and output if not a Twitch API message
             if not 'tmi.twitch.tv' in message:
                 #Analysis occurs here
-                sentiment,confidence = sentiment(message)
+                sent,confidence = sentiment(message)
 
                 #Output
-                print [username, message, sentiment, confidence]
-                output.write(username+','+message+','+sentiment+','+confidence+'\n')
+                print [username, message, sent, confidence]
+                output.write(username+','+message+','+sent+','+confidence+'\n')
 
                 #Updating meta data
                 index = int((message_time - start_time)/ANALYSIS_TIME_FRAME)
-                update(index, sentiment, float(confidence))
+                update(index, sent, float(confidence))
 
         #Added refresh rate to limit hitting Twitch
         sleep(REFRESH_RATE)

@@ -6,7 +6,7 @@ HOST = "irc.twitch.tv"	#Twitch API host IP
 PORT = 6667		#Twitch API host port
 NICKNAME = "sentiment_bot"	#Twitch username
 AUTHORIZATION = "oauth:rmd0q99k20szlghys0cgsf9r6thl02"	#Twitch auth token from http://www.twitchapps.com/tmi/
-CHANNEL = "#ster"	#Twitch channel to read chat from
+CHANNEL = "#officialhhi"	#Twitch channel to read chat from
 
 #Analytics variables
 REFRESH_RATE = 0	#Time in seconds that the process will sleep to check for another message

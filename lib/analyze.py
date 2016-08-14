@@ -1,4 +1,5 @@
-from lib.alchemyapi import AlchemyAPI
+from alchemyapi import AlchemyAPI
+from config import *
 
 
 #Collection to hold meta data for time-slot analytics
@@ -26,6 +27,8 @@ def sentiment(message):
 
 #Function to update the meta collection
 def update(index, sentiment, confidence):
+    global error_counter
+
     if len(meta_collection) - 1 < index:
         meta_collection.append(META_EMPTY)
 
