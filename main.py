@@ -52,5 +52,3 @@ with open('sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as outpu
 
         #Added refresh rate to limit hitting Twitch
         sleep(REFRESH_RATE)
-
-
