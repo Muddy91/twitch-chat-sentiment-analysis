@@ -1,5 +1,6 @@
 from lib.alchemyapi import AlchemyAPI
 
+
 #Collection to hold meta data for time-slot analytics
 meta_collection = []
 #Setting up API for sentiment analysis

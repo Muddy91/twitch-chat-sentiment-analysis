@@ -1,5 +1,6 @@
 import re
 
+
 #Twitch setup
 HOST = "irc.twitch.tv"	#Twitch API host IP
 PORT = 6667		#Twitch API host port

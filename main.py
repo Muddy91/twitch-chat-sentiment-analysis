@@ -1,5 +1,6 @@
 import socket
 import requests
+import re
 from time import sleep,time
 from lib.config import *
 from lib.analyze import *
@@ -12,7 +13,6 @@ try:
 except socket.gaierror:
     print 'Error connecting to Twitch\nExiting program...'
     quit()
-
 s.send("PASS {}\r\n".format(AUTHORIZATION).encode("utf-8"))
 s.send("NICK {}\r\n".format(NICKNAME).encode("utf-8"))
 s.send("JOIN {}\r\n".format(CHANNEL).encode("utf-8"))
@@ -50,7 +50,7 @@ with open('sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as outpu
                 index = int((message_time - start_time)/ANALYSIS_TIME_FRAME)
                 update(index, sentiment, float(confidence))
 
-
+        #Added refresh rate to limit hitting Twitch
         sleep(REFRESH_RATE)
 
 
