@@ -1,5 +1,7 @@
 from alchemyapi import AlchemyAPI
 from config import *
+from sys import stdout
+
 
 
 #Collection to hold meta data for time-slot analytics
@@ -8,6 +10,8 @@ meta_collection = []
 alchemyapi = AlchemyAPI()
 #Counter for checking if API is still responsive
 error_counter = 0
+#Global holder for the previous output
+prev_out = ''
 
 
 #Function to perform sentiment analysis on a given chat message
@@ -51,4 +55,13 @@ def update(index, sentiment, confidence):
         meta_collection[index]['Error'] += 1
         error_counter += 1
         if error_counter == MAX_ERROR_COUNT:
-            print 'Recieved too many error messages from the API\nExiting program...'
+            print('Recieved too many error messages from the API\nExiting program...')
+
+def printMeta(index):
+    global prev_out
+    stdout.write('\r' + ' '*len(prev_out))
+    stdout.flush()
+    new_out = str(meta_collection[index])
+    stdout.write("\r%s" % new_out)
+    stdout.flush()
+    prev_out = new_out

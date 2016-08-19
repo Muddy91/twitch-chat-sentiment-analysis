@@ -43,12 +43,13 @@ with open('data/sentiment-log_'+CHANNEL+'_'+str(int(start_time))+'.csv','a') as 
                 sent,confidence = sentiment(message)
 
                 #Output
-                print [username, message, sent, confidence]
+                #print [username, message, sent, confidence]
                 output.write(username+','+message+','+sent+','+confidence+'\n')
 
                 #Updating meta data
                 index = int((message_time - start_time)/ANALYSIS_TIME_FRAME)
                 update(index, sent, float(confidence))
+                printMeta(index)
 
         #Added refresh rate to limit hitting Twitch
         sleep(REFRESH_RATE)
